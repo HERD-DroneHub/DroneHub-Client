@@ -1,6 +1,6 @@
 import './style.scss';
 import React, { useEffect, useRef, useState } from 'react';
-import MapGL, { type MapRef } from 'react-map-gl';
+import MapGL, { type MapRef, GeolocateControl } from 'react-map-gl';
 import { MAPBOX_KEY } from '@/utils/constants';
 import useDroneStore from '@/hooks/drone-store';
 import MapDrone from '../map-drone';
@@ -32,27 +32,14 @@ const MapView: React.FC = () => {
   const mapDraw = useMapDrawStore(s => s.draw);
   const [mapLoaded, setMapLoaded] = useState(false);
 
-  const [userLocation, setUserLocation] = useState<[number, number] | null>(null);
+  const geolocateControlRef = useRef<any>(null);
 
   useEffect(() => {
-
-    // Get the user's current location
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const { latitude, longitude } = position.coords;
-          setUserLocation([longitude, latitude]);
-        },
-        (error) => {
-          console.error('Error fetching user location:', error);
-        },
-        { enableHighAccuracy: true }
-      );
-    } else {
-      console.error('Geolocation is not supported by this browser.');
+    // Trigger geolocation when map loads
+    if (mapLoaded && geolocateControlRef.current) {
+      geolocateControlRef.current.trigger();
     }
-  }, []);
-
+  }, [mapLoaded]);
 
   /**
    * Ensure that the map has loaded, before adding functionality.
@@ -76,9 +63,22 @@ const MapView: React.FC = () => {
     }
   }
 
+  const handleGeolocate = (e: any) => {
+    // Update map view to user's location when geolocate is triggered
+    mapStore.setViewState({
+      longitude: e.coords.longitude,
+      latitude: e.coords.latitude,
+      zoom: 17,
+      bearing: 0,
+      pitch: 0,
+      padding: { top: 0, bottom: 0, left: 0, right: 0 },
+    });
+  }
+
   return (
     <MapGL
         mapboxAccessToken={MAPBOX_KEY}
+        {...mapStore.viewState}
         onMove={evt => mapStore.setViewState(evt.viewState)}
         mapStyle='mapbox://styles/mapbox/standard'
         cursor='grab'
@@ -86,6 +86,15 @@ const MapView: React.FC = () => {
         ref={mapRef}
         onLoad={onLoad}
       >
+        <GeolocateControl
+          ref={geolocateControlRef}
+          position="top-right"
+          positionOptions={{ enableHighAccuracy: true }}
+          trackUserLocation={true}
+          showUserHeading={true}
+          onGeolocate={handleGeolocate}
+        />
+        
         {mapLoaded && (
           <>
             {/** Missions */}
