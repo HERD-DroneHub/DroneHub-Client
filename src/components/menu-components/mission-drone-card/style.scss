@@ -1,0 +1,29 @@
+.mission-drone-card {
+  min-width: fit-content;
+  height: fit-content;
+  margin-left: 20px;
+  margin-bottom: 10px;
+  padding: 10px;
+
+  box-shadow: 5px 5px 5px lightgray;
+  border: 1px solid black;
+
+  border-radius: 10px;
+
+  overflow-x: scroll;
+
+  color: black;
+
+  &:hover {
+    cursor: pointer;
+    box-shadow: none;
+  }
+}
+
+.selected-mission-drone {
+  @extend .mission-drone-card;
+
+  border: 1px solid #0A84FF;
+  background-color: #cde6ff;
+  border-radius: 10px;
+}

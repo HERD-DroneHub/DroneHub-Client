@@ -1,0 +1,25 @@
+.drone-menu {
+  background-color: white;
+  height: fit-content;
+  width: calc(100% - 40px);
+  position: fixed;
+  bottom: 70px;
+  margin: 20px;
+  border-radius: 10px;
+  
+  animation: fadeIn .5s;
+  color: black;
+}
+
+.drone-card-container {
+  display: flex;
+  overflow-x: scroll;
+  padding-right: 20px;
+  height: fit-content;
+  margin-bottom: 20px;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
