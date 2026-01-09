@@ -27,15 +27,23 @@ const Menu = () => {
     }
   }
 
+  const changeSelectedItem = (item: string) => {
+    if(selectedItem === item){
+      setSelectedItem('');
+    } else {
+      setSelectedItem(item);
+    }
+  }
+
   return(
     <>
       {showMenu()}
       <div className="bottom-menu">
-        <button className='menu-button' onClick={() => setSelectedItem('missions')}>
+        <button className='menu-button' onClick={() => changeSelectedItem('missions')}>
           <FontAwesomeIcon icon={faDrawPolygon} className='icon' />
           Missions
         </button>
-        <button className='menu-button' onClick={() => setSelectedItem('drones')}>
+        <button className='menu-button' onClick={() => changeSelectedItem('drones')}>
           <FontAwesomeIcon icon={faLocationArrow} className='icon' />
           Drones
         </button>
