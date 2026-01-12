@@ -7,27 +7,21 @@ import useMissionStore from "@/hooks/mission-store";
 import useDroneSelectionStore from "@/hooks/select-store";
 import type { Mission } from "@/interfaces/mission";
 import * as constants from "@/utils/constants";
-import { MissionConfig, MissionTypes } from "@/utils/mission-types";
+import { MissionConfig } from "@/utils/mission-types";
 import { sendStopMissionMessage } from "@/utils/server-commands";
-import { useEffect, useState } from "react";
-import { PerimeterSearchDefaultName } from "./description";
+import { useState } from "react";
+import { PS_DEFAULT_MISSION, PS_DEFAULT_NAME } from "./description";
 
-const DEFAULT_MISSION: Mission = {
-  id: '',
-  name: PerimeterSearchDefaultName,
-  type: MissionTypes.PERIMETER_SEARCH,
-  coords: [],
-  horizontalDistance: 2,
-  verticalDistance: 2,
-  altitude: 20,
-  speed: 5,
-  drones: [],
-  active: false,
-};
+/** Component for configuring and managing a Perimeter Search Mission
+ * @param props - The properties for the PerimeterSearchMission component.
+ * @param props.returnTo - A function to return to the previous mission container state.
+ * @param props.mission - An optional existing mission to edit.
+ * @returns A React component for configuring a Perimeter Search Mission.
+ */
 
 export const PerimeterSearchMission = (props: {returnTo: (value: string) => void, mission?: Mission}) => {
 
-  const [mission, setMission] = useState<Mission>(props.mission ? props.mission : DEFAULT_MISSION);
+  const [mission, setMission] = useState<Mission>(props.mission ? props.mission : PS_DEFAULT_MISSION);
   const prevMission = props.mission;
   const configState = props.mission ? 'edit' : 'new';
 
@@ -36,10 +30,6 @@ export const PerimeterSearchMission = (props: {returnTo: (value: string) => void
   const {removeMission} = useMapDrawStore(); 
 
   const [display, setDisplay] = useState<'settings' | 'area-select'>('settings');
-
-  useEffect(() => {
-    console.log(mission.id);
-  });
 
   const setName = (value: string) => {
     setMission(prev => ({ ...prev, name: value }));
@@ -73,6 +63,7 @@ export const PerimeterSearchMission = (props: {returnTo: (value: string) => void
     setMission(prev => ({ ...prev, horizontalDistance: value }));
   }
 
+  // Renders the list of connected drones for selection. If no drones are connected, shows a message.
   const droneSelection = () => {
     if(selectedDrones.length === 0){
       return(
@@ -81,7 +72,6 @@ export const PerimeterSearchMission = (props: {returnTo: (value: string) => void
         </>
       );
     }
-    
     return (
       <>
         {drones.map((d) => <MissionDroneCard key={d.id} drone={d}/>)}
@@ -101,27 +91,35 @@ export const PerimeterSearchMission = (props: {returnTo: (value: string) => void
     
   }
 
-  const onSave = () => { 
+  // Saves the mission configuration and returns to the main mission container.
+  const onSave = () => {
+    // Mission ID is from the id given by the shape from MapBox Draw.
     if(mission.id != '') {
       const temp = { ...mission };
       temp.drones = selectedDrones;
 
+      // If editing an active mission, stop it on all drones first.
       if(temp.active){
         for(const drone of temp.drones)
           sendStopMissionMessage(drone);
       }
 
       temp.active = false;
-  
+      
+      // Update the mission in the global mission store.
       useMissionStore.setState((prev) => ({missions: new Map(prev.missions).set(mission.id, temp)}))
+      
+      // Return to the default mission container view (new btn).
       props.returnTo(MissionConfig.DEFAULT);
     }
   };
 
+  // Disables the save button if required fields are not filled out.
   const disableSave = () => {
-    return mission.coords.length === 0 || mission.name.trim() === PerimeterSearchDefaultName || mission.id === '';
+    return mission.coords.length === 0 || mission.name.trim() === PS_DEFAULT_NAME || mission.id === '';
   }
 
+  // Renders either the mission settings or the area selection interface.
   if(display === 'settings')
     return (
       <div>

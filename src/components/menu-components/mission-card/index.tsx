@@ -16,6 +16,7 @@ import useMissionStore from '@/hooks/mission-store';
 import { sendStopMissionMessage,  } from '@/utils/server-commands';
 import useMissionContainerStore from '@/hooks/mission-container-store';
 import { MissionTypes } from '@/utils/mission-types';
+import { sendPerimeterMissionCommand } from '@/mission-types/perimeter-search/functions';
 
 const MissionCard = (props: {mission: Mission}) => {
 
@@ -41,13 +42,17 @@ const MissionCard = (props: {mission: Mission}) => {
 
     useMissionStore.setState((prev) => ({missions: new Map(prev.missions).set(mission.id, tempMission)}))
 
-    if(mission.type == MissionTypes.PERIMETER_SEARCH)
-      //sendWaypointMissionCommand(mission);
-      console.log("Perimeter Search");
-      
-    else if(mission.type == MissionTypes.OPTIMAL_SEARCH){
-      console.log("Optimal Search");
-      //sendOptimizedMission(mission)
+    switch(mission.type) {
+      case MissionTypes.PERIMETER_SEARCH:
+        sendPerimeterMissionCommand(mission);
+        break;
+      case MissionTypes.OPTIMAL_SEARCH:
+        console.log("Optimal Search");
+        //sendOptimizedMission(mission);
+        break;
+      default:
+        console.log('Unknown mission type:', mission.type);
+        break;
     }
   }
 

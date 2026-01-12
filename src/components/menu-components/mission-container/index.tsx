@@ -1,7 +1,7 @@
 import "./style.scss";
 import { MissionConfig, MissionTypes, type MissionConfigType, type MissionType } from "@/utils/mission-types";
 import useMissionContainerStore from "@/hooks/mission-container-store";
-import { PerimeterSearchDescription } from "@/mission-types/perimeter-search/description";
+import { PS_DESCRIPTION } from "@/mission-types/perimeter-search/description";
 import { GoToDescription } from "@/mission-types/go-to/description";
 import { OptimalSearchDescription } from "@/mission-types/optimal-search/description";
 import { PerimeterSearchMission } from "@/mission-types/perimeter-search";
@@ -51,7 +51,7 @@ const MissionContainer = () => {
       case MissionTypes.GO_TO:
         return GoToDescription;
       case MissionTypes.PERIMETER_SEARCH:
-        return PerimeterSearchDescription;
+        return PS_DESCRIPTION;
       case MissionTypes.OPTIMAL_SEARCH:
         return OptimalSearchDescription;
       default:
