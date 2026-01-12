@@ -16,11 +16,11 @@ This command installs all the packages needed to run the application.
 
 Next, in the root folder, create a .env file with the following entries:
 
-``
-VITE_SOCKET_URL= // Your server URL
 
-VITE_MAPBOX_KEY= // Your MapBox API key
-``
+`VITE_SOCKET_URL= // Your server URL`
+
+`VITE_MAPBOX_KEY= // Your MapBox API key`
+
 
 `VITE_SOCKET_URL` is the URL to the main server where every device is connected to. It can be a server URL or an IP address with a port.
 
