@@ -34,7 +34,6 @@
 
 .setting-container {
   width: 100%;
-  margin: 20px;
   
   display: flex;
   flex-direction: column;
@@ -43,6 +42,7 @@
 
 .mission-input {
   width: calc(100% - 40px);
+  height: 30px;
 
   border-radius: 10px;
   background-color: #DDDFDF;
@@ -97,10 +97,10 @@
 }
 
 .mission-type-container {
-  display: flex;
-  justify-content: center;
   align-items: center;
   margin: 10px;
+
+  width: 50%;
 }
 
 .mission-select-container {
@@ -112,13 +112,35 @@
 
 .mission-select {
   height: 100%;
-  width: 100%;
+  width: 30%;
 
-  border-radius: 20px;
+  max-width: 400px;
+
+  border-radius: 10px;
   border: 1px solid black;
 
   font-size: large;
 
-  padding: 0px 15px;
+  padding: 15px;
+  margin: 20px 0px 0px 20px
 ;
+}
+
+.mission-type-description {
+  margin: 20px 0px 30px 20px
+}
+
+.mission-type-button-container {
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+}
+
+.mission-config-container {
+  margin: 10px 40px 20px 40px;
+  width: calc(100% - 80px);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }

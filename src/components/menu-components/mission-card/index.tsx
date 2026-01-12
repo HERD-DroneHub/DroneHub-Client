@@ -13,17 +13,20 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import type { Mission } from '@/interfaces/mission';
 import { faGear, faPlay, faStop } from '@fortawesome/free-solid-svg-icons';
 import useMissionStore from '@/hooks/mission-store';
-import useConfigureMissionStore from '@/hooks/mission-config-store';
 import { sendStopMissionMessage,  } from '@/utils/server-commands';
-import { OPTIMAL_SEARCH, PERIMETER_SEARCH } from '@/utils/constants';
+import useMissionContainerStore from '@/hooks/mission-container-store';
+import { MissionTypes } from '@/utils/mission-types';
 
 const MissionCard = (props: {mission: Mission}) => {
+
+  const setMissionContainer = useMissionContainerStore((state) => state.setMissionContainer);
+  const setMissionType = useMissionContainerStore((state) => state.setMissionType);
+  const setSelectedMission = useMissionContainerStore((state) => state.setSelectedMission);
   
   const mission = props.mission;
-  const enableConfigure = useConfigureMissionStore((s) => s.enableConfigure);
   
   const onStopClick = () => {
-    const tempMission = mission;
+    const tempMission = {...mission};
     tempMission.active = false;
 
     useMissionStore.setState((prev) => ({missions: new Map(prev.missions).set(mission.id, tempMission)}))
@@ -33,23 +36,36 @@ const MissionCard = (props: {mission: Mission}) => {
   }
 
   const onDeployClick = () => {
-    const tempMission = mission;
+    const tempMission = {...mission};
     tempMission.active = true;
 
     useMissionStore.setState((prev) => ({missions: new Map(prev.missions).set(mission.id, tempMission)}))
 
-    if(mission.type == PERIMETER_SEARCH)
+    if(mission.type == MissionTypes.PERIMETER_SEARCH)
       //sendWaypointMissionCommand(mission);
       console.log("Perimeter Search");
       
-    else if(mission.type == OPTIMAL_SEARCH){
+    else if(mission.type == MissionTypes.OPTIMAL_SEARCH){
       console.log("Optimal Search");
       //sendOptimizedMission(mission)
     }
   }
 
   const onConfigClick = () => {
-    enableConfigure(mission);
+    setSelectedMission(mission);
+    switch(mission.type) {
+      case MissionTypes.PERIMETER_SEARCH:
+        setMissionType(MissionTypes.PERIMETER_SEARCH);
+        setMissionContainer(MissionTypes.PERIMETER_SEARCH);
+        break;
+      case MissionTypes.OPTIMAL_SEARCH:
+        setMissionType(MissionTypes.OPTIMAL_SEARCH);
+        setMissionContainer(MissionTypes.OPTIMAL_SEARCH);
+        break;
+      default:
+        console.log('Unknown mission type:', mission.type);
+        break;
+    }
   }
   
   return(

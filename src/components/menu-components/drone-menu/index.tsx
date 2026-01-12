@@ -14,10 +14,6 @@ const DroneMenu = () => {
 
   const drones: Drone[] = Array.from(useDroneStore((state) => state.drones).values());
 
-  /**
-   * If the "Drones" button has been selected in the bottom menu,
-   * display the container with all the drone cards.
-   */
   return (
       <>
         <div className="drone-menu">

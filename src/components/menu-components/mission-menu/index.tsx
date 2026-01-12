@@ -25,7 +25,6 @@ const MissionMenu = () => {
           :
           <></>
         }
-        
       </div>
     </>
   );
