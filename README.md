@@ -18,6 +18,7 @@ Next, in the root folder, create a .env file with the following entries:
 
 ``
 VITE_SOCKET_URL= // Your server URL
+
 VITE_MAPBOX_KEY= // Your MapBox API key
 ``
 
