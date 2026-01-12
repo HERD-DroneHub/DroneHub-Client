@@ -57,9 +57,9 @@ If you want custom styling for the settings menu, you can define it in this file
 
 You need to update the code a few places to fully incorporate your custom mission type.
 
-In `mission-types.ts` in the `utils` folder, please add your mission type to the `MissionTypes` constant. This allows your type to appear in the project.
-In `menu-container`, please add your mission type to the switch cases and update accordingly. This will make your type available for creation.
-In `menu-card`, please add you mission type to the switch cases and update accordingly. This will allow you to start your missions if you have created a function for it. It also allows you to update your mission with the right settings. 
+1. In `mission-types.ts` in the `utils` folder, please add your mission type to the `MissionTypes` constant. This allows your type to appear in the project.
+2. In `menu-container`, please add your mission type to the switch cases and update accordingly. This will make your type available for creation.
+3. In `menu-card`, please add you mission type to the switch cases and update accordingly. This will allow you to start your missions if you have created a function for it. It also allows you to update your mission with the right settings. 
 
 ## Questions
 
