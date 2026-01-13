@@ -6,7 +6,7 @@ The application allows drones that are open for programming (such as some of the
 Please ensure that when using DroneHub that you still are able to control the drone with a dedicated controller, and please follow the drone regulations of your country if you plan to use it outdoors.
 
 ## Setup
-To run this project, you need to have Node.js installed on your device. We also recommend you to use Google Chrome, as this is the platform we have mostly tested on, however, most browsers are supported.
+To run this project, you need to have Node.js installed on your device: https://nodejs.org/en. We also recommend you to use Google Chrome, as this is the browser we have extensively tested, however, most browsers are supported.
 
 After cloning this repository, please run the command:
 
@@ -38,7 +38,7 @@ If the map loads, the application is running correctly. You can now start to con
 
 ## Adding Custom Missions
 
-At the moment, DroneHub support two mission types that can run without any external processing. These are good you primarily want to quickly fly the drones within an area.
+At the moment, DroneHub support two mission types that can run without any external processing. These are good you primarily want to quickly fly the drones within an area and not run any other external services or programs.
 
 If you want to expand on DroneHub, we have made it accessible to quickly add your own. We recommend following the structure of the existing mission types that resides in the `mission-type` folder.
 
@@ -59,8 +59,8 @@ If you want custom styling for the settings menu, you can define it in this file
 You need to update the code a few places to fully incorporate your custom mission type.
 
 1. In `mission-types.ts` in the `utils` folder, please add your mission type to the `MissionTypes` constant. This allows your type to appear in the project.
-2. In `menu-container`, please add your mission type to the switch cases and update accordingly. This will make your type available for creation.
-3. In `menu-card`, please add you mission type to the switch cases and update accordingly. This will allow you to start your missions if you have created a function for it. It also allows you to update your mission with the right settings. 
+2. In `menu-container`, please add your mission component and type to the switch cases and update accordingly. This will make your type available for creation.
+3. In `menu-card`, please add you mission component and type to the switch cases and update accordingly. This will allow you to start your missions if you have created a function for it. It also allows you to update a mission with the right settings. 
 
 ## Questions
 

@@ -27,7 +27,7 @@ export const PerimeterSearchMission = (props: {returnTo: (value: string) => void
 
   const drones = Array.from(useDroneStore((s) => s.drones).values());
   const selectedDrones = useDroneSelectionStore((s) => s.selectedDrones);
-  const {removeMission} = useMapDrawStore(); 
+  const {draw, addMission, removeMission} = useMapDrawStore(); 
 
   const [display, setDisplay] = useState<'settings' | 'area-select'>('settings');
 
@@ -36,7 +36,6 @@ export const PerimeterSearchMission = (props: {returnTo: (value: string) => void
   }
   const setId = (value: string) => {
     setMission(prev => ({ ...prev, id: value }));
-    console.log(value);
   }
 
   const setCoords = (value: number[][]) => {
@@ -65,7 +64,7 @@ export const PerimeterSearchMission = (props: {returnTo: (value: string) => void
 
   // Renders the list of connected drones for selection. If no drones are connected, shows a message.
   const droneSelection = () => {
-    if(selectedDrones.length === 0){
+    if(drones.length === 0){
       return(
         <>
           No Drones Connected
@@ -84,8 +83,22 @@ export const PerimeterSearchMission = (props: {returnTo: (value: string) => void
       if(mission.id != '') removeMission(mission.id);
       props.returnTo(MissionConfig.CREATE);
     }
+    // If the user was editing an existing mission, revert any changes made.
     else {
+      // Delete the new mission drawn.
+      draw.delete(mission.id);
+      removeMission(mission.id);
+
+      // Add the previous mission back to the store and map.
+      addMission({
+        id: prevMission!.id,
+        coords: prevMission!.coords
+      });
+
+      // Set the mission state back to the previous mission.
       setMission(prevMission!);
+
+      // Return to the default mission container view (new btn).
       props.returnTo(MissionConfig.DEFAULT);
     }
     
