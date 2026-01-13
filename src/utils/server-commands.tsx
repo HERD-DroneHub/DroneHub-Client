@@ -1,4 +1,4 @@
-import { sendMessage } from "../services/socket";
+import { sendMessage } from "@/services/socket";
 import { DRONE_STOP } from "./constants";
 
 

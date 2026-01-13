@@ -1,8 +1,8 @@
 import '../altitude/style.scss';
-import type { Drone } from '../../../interfaces/drone';
-import useDroneStore from '../../../hooks/drone-store';
+import type { Drone } from '@/interfaces/drone';
+import useDroneStore from '@/hooks/drone-store';
 import AltitudeMarker from '../altitude-marker';
-import { MAX_ALTITUDE } from '../../../utils/constants';
+import { MAX_ALTITUDE } from '@/utils/constants';
 
 /**
  * The altitude component shows the vertical separation between the drones,

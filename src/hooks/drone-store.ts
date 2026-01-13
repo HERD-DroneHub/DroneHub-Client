@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import type { Drone } from '../interfaces/drone';
+import type { Drone } from '@/interfaces/drone';
 
 /**
  * The drone store saves all information about the drones within a map,

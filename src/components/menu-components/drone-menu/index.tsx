@@ -1,6 +1,5 @@
 import './style.scss';
 import useDroneStore from '@/hooks/drone-store';
-import useMenuStore from '@/hooks/menu-store';
 import type { Drone } from '@/interfaces/drone';
 import DroneCard from '../drone-card';
 
@@ -13,15 +12,9 @@ import DroneCard from '../drone-card';
 
 const DroneMenu = () => {
 
-  const isSelected: boolean = useMenuStore((state) => state.droneSelected);
   const drones: Drone[] = Array.from(useDroneStore((state) => state.drones).values());
 
-  /**
-   * If the "Drones" button has been selected in the bottom menu,
-   * display the container with all the drone cards.
-   */
-  if(isSelected)
-    return (
+  return (
       <>
         <div className="drone-menu">
           <h3>Drones</h3>
@@ -31,8 +24,6 @@ const DroneMenu = () => {
         </div>
       </>
     );
-  
-  return(<></>);
 }
 
 export default DroneMenu;

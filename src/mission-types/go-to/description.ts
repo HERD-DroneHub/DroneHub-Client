@@ -1,0 +1,1 @@
+export const GoToDescription = `A Go to Location mission involves directing a drone to fly to a specific set of coordinates. This type of mission is commonly used for tasks such as aerial photography, surveying, and delivery services. The drone autonomously navigates to the designated location while avoiding obstacles and adhering to flight regulations.`;

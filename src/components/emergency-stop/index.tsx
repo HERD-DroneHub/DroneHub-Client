@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '../emergency-stop/style.scss';
 import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
-import useDroneStore from '../../hooks/drone-store';
+import useDroneStore from '@/hooks/drone-store';
 import { sendStopMissionMessage } from '@/utils/server-commands';
 
 /**

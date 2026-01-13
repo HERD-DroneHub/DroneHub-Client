@@ -9,7 +9,6 @@ export const MAPBOX_KEY = String(import.meta.env.VITE_MAPBOX_KEY);
 
 // Socket Channels - All the sockets that communicates data between the server.
 export const DRONE_SOCKET = "drones";
-export const DRONE_WAYPOINT_MISSION = "drone-request-waypoint";
 export const DRONE_GOTO_MISSION = "drone-request-goto";
 export const DRONE_STOP = "drone-request-stop";
 export const EVENT_SOCKET = "events";
@@ -26,11 +25,6 @@ export const SELECTED_COLOR = '#7dbeff';
 
 // Numerical constants
 export const SECONDS_MS = 1000;
-
-// Mission types
-export const PERIMETER_SEARCH = 'Perimeter Search';
-export const OPTIMAL_SEARCH = 'Optimized Search'
-export const GOTO_MISSION = 'Go-To Location'
 
 // Mission default settings
 export const MIN_SPEED = 1;
