@@ -1,6 +1,6 @@
 import { Marker } from "react-map-gl";
-import type { Drone } from "../../../interfaces/drone";
 import './style.scss'
+import type { Drone } from "@/interfaces/drone";
 import MapDroneIcon from "../map-drone-icon";
 
 /**

@@ -1,9 +1,9 @@
 import { useContext, useEffect } from "react";
 import { SocketContext } from "./socket"
-import { DRONE_SOCKET } from "../utils/constants.ts";
-import type { Drone } from "../interfaces/drone.ts";
-import type { DroneInformation } from "../interfaces/drone-socket.ts";
-import useDroneStore from "../hooks/drone-store";
+import { DRONE_SOCKET } from "@/utils/constants.ts";
+import type { Drone } from "@/interfaces/drone.ts";
+import type { DroneInformation } from "@/interfaces/drone-socket.ts";
+import useDroneStore from "@/hooks/drone-store";
 
 /**
  * DroneService listens to the Drone socket channel,
@@ -42,7 +42,7 @@ const DroneService = () => {
 
       
     })
-  })
+  }, [socket])
 
   return(<></>);
 }

@@ -12,7 +12,7 @@ import MapMission from '../map-mission';
 import type { DroneEvent } from '@/interfaces/drone-event';
 import useEventStore from '@/hooks/event-store';
 import MapEvent from '../map-event';
-
+import 'mapbox-gl/dist/mapbox-gl.css'; 
 /**
  * The main map component that is responsible for displaying all map related elements.
  * This includes displaying the drones current positions, the missions and where event have been triggered.
@@ -33,11 +33,13 @@ const MapView: React.FC = () => {
   const [mapLoaded, setMapLoaded] = useState(false);
 
   const geolocateControlRef = useRef<any>(null);
+  const geolocateTriggered = useRef(false);
 
   useEffect(() => {
-    // Trigger geolocation when map loads
-    if (mapLoaded && geolocateControlRef.current) {
+    // Trigger geolocation when map loads (only once)
+    if (mapLoaded && geolocateControlRef.current && !geolocateTriggered.current) {
       geolocateControlRef.current.trigger();
+      geolocateTriggered.current = true;
     }
   }, [mapLoaded]);
 

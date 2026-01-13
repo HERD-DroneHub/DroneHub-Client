@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import type { DroneEvent } from "../interfaces/drone-event";
+import type { DroneEvent } from "@/interfaces/drone-event";
 
 /**
  * The event store saves all the events in a map.

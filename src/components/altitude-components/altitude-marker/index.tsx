@@ -1,7 +1,7 @@
-import type { Drone } from "../../../interfaces/drone";
-import useSelectStore from "../../../hooks/select-store";
+import type { Drone } from "@/interfaces/drone";
+import useSelectStore from "@/hooks/select-store";
 import './style.scss';
-import { MAX_ALTITUDE, SELECTED_COLOR } from "../../../utils/constants";
+import { MAX_ALTITUDE, SELECTED_COLOR } from "@/utils/constants";
 
 /**
  * Altitude marker for a drone that needs to be displayed on the altitude component.
