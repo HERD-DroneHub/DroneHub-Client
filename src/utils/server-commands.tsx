@@ -1,5 +1,7 @@
 import { sendMessage } from "@/services/socket";
-import { DRONE_STOP } from "./constants";
+import { ADD_DRONE_TO_VIDEOSCREEN, DRONE_STOP, REMOVE_DRONE_TO_VIDEOSCREEN } from "./constants";
+import type { DroneVideoCommand } from "@/interfaces/drone-socket";
+import type { Drone } from "@/interfaces/drone";
 
 
 // Request the drone to stop flying
@@ -9,6 +11,28 @@ export const sendStopMissionMessage = (droneID: string) => {
   };
 
   sendMessage(DRONE_STOP, JSON.stringify(request));
+}
+
+export const startVideoStream = (drone: Drone) => {
+    console.log("START video for: " + drone.id);
+    const request = {
+        targetDroneId: drone.id,
+        targetDroneName: drone.name,
+        droneColor: drone.color,
+        socketId: ""
+    } as DroneVideoCommand;
+    sendMessage(ADD_DRONE_TO_VIDEOSCREEN, JSON.stringify(request));
+}
+
+export const stopVideoStream = (drone: Drone) => {
+    console.log("STOP video for: " + drone.id);
+    const request = {
+        targetDroneId: drone.id,
+        targetDroneName: drone.name,
+        droneColor: drone.color,
+        socketId: ""
+    } as DroneVideoCommand;
+    sendMessage(REMOVE_DRONE_TO_VIDEOSCREEN, JSON.stringify(request));
 }
 
 // // Send the optimized route to the drones

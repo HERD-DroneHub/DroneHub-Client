@@ -2,6 +2,13 @@ import { create } from 'zustand';
 import { MissionConfig, MissionTypes, type MissionConfigType, type MissionType } from '@/utils/mission-types';
 import type { Mission } from '@/interfaces/mission';
 
+/**
+ * Mission Container Store
+ * 
+ * This store manages the state of the mission container, including the current mission type
+ * and the selected mission. It provides methods to update these states.
+ */
+
 interface MissionContainerState {
   missionContainer: MissionType | MissionConfigType;
   missionType: MissionType;

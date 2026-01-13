@@ -1,6 +1,6 @@
-import { MapDrawPolygon } from "@/components/map-draw/map-draw-polygon";
-import MissionDroneCard from "@/components/menu-components/mission-drone-card";
-import MissionInput from "@/components/menu-components/mission-input";
+import { MapDrawPolygon } from "@/dashboard/map-draw/map-draw-polygon";
+import MissionDroneCard from "@/dashboard/menu-components/mission-drone-card";
+import MissionInput from "@/dashboard/menu-components/mission-input";
 import useDroneStore from "@/hooks/drone-store";
 import useMapDrawStore from "@/hooks/map-draw-store";
 import useMissionStore from "@/hooks/mission-store";

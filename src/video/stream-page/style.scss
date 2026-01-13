@@ -1,0 +1,40 @@
+:root {
+    --ion-grid-column-padding: 0px;
+    --ion-grid-padding: 0px;
+    --ion-grid-margin: 0px;
+}
+
+
+#no-streams-loading-div {
+    text-align: center;
+    position: relative;
+    left: 0; right: 0;
+    top: 0; bottom: 0;
+    margin: auto; padding: 0; border: 0;
+}
+
+#no-streams-loading-div h1 {
+    font-size: 72px;
+    color: #FFFFFF;
+    line-height: 42px;
+}
+
+#no-streams-loading-div h1 span {
+    position: absolute;
+    left: 0;
+    font-weight: 360;
+    color: #929292;
+    font-size: 26px;
+}
+
+#no-streams-loading-div h3 {
+    font-size: 24px;
+    color: #5260ff;
+
+}
+
+ion-spinner {
+    margin-top: 50px;
+    padding-top: 10px;
+    transform: scale(0.8);
+}

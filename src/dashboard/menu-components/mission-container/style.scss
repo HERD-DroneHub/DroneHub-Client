@@ -1,0 +1,146 @@
+.new-mission-container {
+  margin-top: 15px;
+  height: 80px;
+  margin-left: 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid rgb(200, 200, 200);
+  width: calc(100% - 40px);
+}
+
+.new-mission-button {
+  border: 2px solid black;
+  border-radius: 20px;
+  min-height: fit-content;
+  min-width: fit-content;
+  float: left;
+}
+
+.configure-mission-container {
+  margin-top: 15px;
+  margin-left: 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid rgb(200, 200, 200);
+  width: calc(100% - 40px);
+
+  display: flex;
+  flex-direction: column;
+}
+
+.mission-settings {
+  width: 100%;
+  display: flex;
+  height: fit-content;
+}
+
+.setting-container {
+  width: 100%;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mission-input {
+  width: calc(100% - 40px);
+  height: 30px;
+
+  border-radius: 10px;
+  background-color: #DDDFDF;
+  border: none;
+  
+  padding: 15px 15px 15px 20px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  
+  font-size: large;
+
+  display: flex;
+  align-items: center;
+}
+
+.select-area-container {
+  width: 100%;
+
+  margin-top: 12px;
+  margin-bottom: 5px;
+}
+
+.edit-mission-area-button {
+  border-radius: 20px;
+  border: 1px solid black;
+  float: right;
+  font-size: large;
+}
+
+.button-container {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.mission-button {
+  border-radius: 20px;
+  font-size: large;
+
+  margin-right: 10px;
+  border: 1px solid black;
+}
+
+.cancel-button {
+  @extend .mission-button;
+}
+
+.apply-button {
+  @extend .mission-button;
+  background-color: #0A84FF;
+  color: white;
+  margin-left: 10px;
+}
+
+.mission-type-container {
+  align-items: center;
+  margin: 10px;
+
+  width: 50%;
+}
+
+.mission-select-container {
+  height: 45px;
+  width: 280px;
+
+  margin-right: 50px
+}
+
+.mission-select {
+  height: 100%;
+  width: 30%;
+
+  max-width: 400px;
+
+  border-radius: 10px;
+  border: 1px solid black;
+
+  font-size: large;
+
+  padding: 15px;
+  margin: 20px 0px 0px 20px
+;
+}
+
+.mission-type-description {
+  margin: 20px 0px 30px 20px
+}
+
+.mission-type-button-container {
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+}
+
+.mission-config-container {
+  margin: 10px 40px 20px 40px;
+  width: calc(100% - 80px);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
